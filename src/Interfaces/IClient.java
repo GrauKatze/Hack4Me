@@ -1,13 +1,11 @@
 package Interfaces;
 
+import java.io.IOException;
 
-/**
- * Itest
- */
 public interface IClient {
-
-    public String send(String str);
-
     public boolean StartClient();
-    
+    public void mail() throws IOException;
+
+    public void SaveData();
+    public void LoadData();
 }

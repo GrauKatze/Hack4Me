@@ -7,54 +7,68 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import Interfaces.IServer;
-import Logging.ILogger;
+import Log.ILogger;
 
 public class Server extends Thread implements IServer {   
 
     ILogger log;
 
     private int port = 13013;
-    private ServerSocket server;
     private Socket clientSocket;
+    private ServerSocket server;
     private static BufferedReader in;
     private static BufferedWriter out;
 
     @Override
-    public void print(String str) {
-        System.out.println("Я получил"+str);
-    }
-
-    @Override
     public void run() {
-        if(StartServer()){
-            
-            System.out.println("Server is started");
-            try{
-                clientSocket = server.accept();
-                mail();
-            } catch (Exception e){
-                log.WriteLog(this.getClass().getName(), e.toString());
-                System.err.println(e);
-            } finally {
-                
-            }
-        }else{
-            System.err.println("Server is not startet");
-        }
+        try {
+            try (ServerSocket server = new ServerSocket(port);)  {
+                System.out.println("Сервер запущен!");
+                clientSocket = server.accept(); 
+                try { 
+                    in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                    out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
 
+                    String word = in.readLine();
+                    System.out.println(word);
+                    out.write("Привет, это Сервер! Подтверждаю, вы написали : " + word + "\n");
+                    out.flush(); 
+
+                } finally { 
+                    clientSocket.close();
+                    in.close();
+                    out.close();
+                }
+            } finally {
+                System.out.println("Сервер закрыт!");
+                    server.close();
+            }
+        } catch (IOException e) {
+            System.err.println(e);
+        }    
         super.run();
     }
 
     @Override
-    public boolean StartServer() {
-        try {
-            server = new ServerSocket(port);
-            log.WriteLog(this.getClass().getName(),"Server start");
-            return true;
+    public void StartServer() {
+        try (ServerSocket server = new ServerSocket(port)) {
+            log.WriteLog(Server.class.getName(), "Server is start");
+            server.accept();
+            try {
+                in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));  
+                
+                String word = in.readLine();
+    
+                System.out.println("Clinet: " + word);
+    
+                out.write("Server get: " + word);
+                out.flush();
+            } catch (Exception e) {
+                log.WriteLog(this.getClass().getName(), e.toString());
+            }
         } catch (Exception e) {
-            System.err.println(e);
             log.WriteLog(this.getClass().getName(), e.toString());
-        return false;
         }
     }
 

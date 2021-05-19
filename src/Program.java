@@ -1,17 +1,25 @@
-import java.util.jar.Attributes.Name;
-
 import Interfaces.IClient;
 import Interfaces.IServer;
-import Logging.*;
+import Log.*;
 
 public class Program {
+    // TODO: добавить связь между сервером и клиентом
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
 
-        IClient clnt = new Client();
-        IServer srv = new Server();
+        ILogger Log = new Logger();
+        // IClient clnt = new Client();
+        // IServer srv = new Server();
 
-        srv.print(clnt.send("ghjk"));
+        // srv.StartServer();
+        // clnt.StartClient();
 
+        // Server server = new Server();
+        // server.start();
+
+        // Client client = new Client();
+        // client.start();
+
+        Client client = new Client();
+        client.LoadData();  
     }
 }
