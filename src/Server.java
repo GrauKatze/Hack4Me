@@ -8,12 +8,13 @@ import java.net.Socket;
 
 import Interfaces.IServer;
 import Log.ILogger;
+import Log.Logger;
 
 public class Server extends Thread implements IServer {   
 
-    ILogger log;
+    ILogger log = new Logger();
 
-    private int port = 13013;
+    private int port = 4004;
     private Socket clientSocket;
     private ServerSocket server;
     private static BufferedReader in;
@@ -22,22 +23,13 @@ public class Server extends Thread implements IServer {
     @Override
     public void run() {
         try {
-            try (ServerSocket server = new ServerSocket(port);)  {
-                System.out.println("Сервер запущен!");
-                clientSocket = server.accept(); 
-                try { 
-                    in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                    out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
-
-                    String word = in.readLine();
-                    System.out.println(word);
-                    out.write("Привет, это Сервер! Подтверждаю, вы написали : " + word + "\n");
-                    out.flush(); 
-
-                } finally { 
-                    clientSocket.close();
-                    in.close();
-                    out.close();
+            try  {
+                StartServer();
+                clientSocket = server.accept();
+                try {
+                    mail();
+                } finally {
+                    ClouseServer();
                 }
             } finally {
                 System.out.println("Сервер закрыт!");
@@ -45,29 +37,16 @@ public class Server extends Thread implements IServer {
             }
         } catch (IOException e) {
             System.err.println(e);
-        }    
-        super.run();
+        }
     }
 
     @Override
     public void StartServer() {
-        try (ServerSocket server = new ServerSocket(port)) {
-            log.WriteLog(Server.class.getName(), "Server is start");
-            server.accept();
-            try {
-                in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));  
-                
-                String word = in.readLine();
-    
-                System.out.println("Clinet: " + word);
-    
-                out.write("Server get: " + word);
-                out.flush();
-            } catch (Exception e) {
-                log.WriteLog(this.getClass().getName(), e.toString());
-            }
+        try {
+            this.server = new ServerSocket(port);
+            System.out.println("Сервер запущен!");
         } catch (Exception e) {
+            System.out.println("Сервер not запущен!");
             log.WriteLog(this.getClass().getName(), e.toString());
         }
     }
@@ -75,24 +54,25 @@ public class Server extends Thread implements IServer {
     @Override
     public void mail() throws IOException {
         try {
-            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));  
-            
-            String word = in.readLine();
-
-            System.out.println("Clinet: " + word);
-
-            out.write("Server get: " + word);
-            out.flush();
+            Server.in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            Server.out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));  
+            String word;
+            while(true){
+                word = in.readLine();
+                System.out.println("Clinet: " + word);
+                //Так как клиент ждет поток от сервера
+                out.write("\n");
+                out.flush();
+            }
         } catch (Exception e) {
             log.WriteLog(this.getClass().getName(), e.toString());
         }
     }
 
     @Override
-    public void clouseServer() throws IOException {
-        clientSocket.close();
-        in.close();
-        out.close();        
+    public void ClouseServer() throws IOException {
+        this.clientSocket.close();
+        Server.in.close();
+        Server.out.close();        
     }
 }

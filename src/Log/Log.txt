@@ -19,5 +19,3 @@
 [Log.Logger]	{Старт записи}
 [Log.Logger]	{Старт записи}
 [Log.Logger]	{Старт записи}
-[Log.Logger]	{Старт записи}
-[Log.Logger]	{Старт записи}

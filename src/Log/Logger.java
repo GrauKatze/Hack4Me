@@ -6,7 +6,7 @@ public class Logger implements ILogger{
     
     @Override
     public void WriteLog(String className ,String message) {
-        try (FileWriter fos = new FileWriter("src/Log/Log.txt",true)){
+        try (FileWriter fos = new FileWriter("src/Log/"+className+".txt",true)){
             String logMessage = "\n["+className+"]\t{"+message+"}";
             fos.append(logMessage);
         } catch (Exception e) {

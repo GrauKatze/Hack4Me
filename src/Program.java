@@ -7,19 +7,15 @@ public class Program {
     public static void main(String[] args) throws Exception {
 
         ILogger Log = new Logger();
-        // IClient clnt = new Client();
-        // IServer srv = new Server();
-
-        // srv.StartServer();
-        // clnt.StartClient();
-
-        // Server server = new Server();
-        // server.start();
-
-        // Client client = new Client();
-        // client.start();
-
+        
+        Server server = new Server();
+        server.start();
+        
         Client client = new Client();
-        client.LoadData();  
+        client.start();
+        
+        IClient clnt = client;
+        IServer srv = server;
+
     }
 }
