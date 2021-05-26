@@ -1,0 +1,2 @@
+
+[Server.Server]	{java.net.SocketException: Обрыв канала (Write failed)}
