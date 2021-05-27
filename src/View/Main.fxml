@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?language javascript?>
-
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
@@ -12,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="root" prefHeight="400.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainController">
+<BorderPane fx:id="root" prefHeight="400.0" prefWidth="550.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainController">
     <top>
         <HBox>
             <Button text="firs" />
@@ -51,7 +50,13 @@
     <bottom>
         <Label>Status</Label>
     </bottom>
-
+    
+    <fx:script>
+        function checkPlayer(){
+            if(userNick.getText())
+                btn.setText(userNick.getText())
+        }
+    </fx:script>
    <padding>
       <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
    </padding>

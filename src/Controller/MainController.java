@@ -1,10 +1,12 @@
 package Controller;
 
+import org.w3c.dom.Text;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
  
 public class MainController {
      
@@ -13,9 +15,12 @@ public class MainController {
 
     @FXML
     private TextField userNick;
+
+    @FXML
+    private TextArea loftext;
      
     @FXML
     private void click(ActionEvent event) {
-            btn.setText(userNick.getText());
+            loftext.appendText(userNick.getText());
         }
     }
