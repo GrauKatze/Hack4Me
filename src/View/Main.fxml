@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?language javascript?>
+
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="root" prefHeight="400.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="root" prefHeight="400.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainController">
     <top>
         <HBox>
             <Button text="firs" />
@@ -24,13 +25,15 @@
         <VBox>
             <Label> Nick </Label>
             <TextField fx:id="userNick" promptText="Nick">
-            <VBox.margin>
-               <Insets bottom="5.0" top="5.0" />
-            </VBox.margin></TextField>
-            <Button id="UserCheck" fx:id="btn" onAction="checkPlayer()" text="input">
-            <VBox.margin>
-               <Insets bottom="5.0" top="5.0" />
-            </VBox.margin></Button>
+                <VBox.margin>
+                <Insets bottom="5.0" top="5.0" />
+                </VBox.margin>
+            </TextField>
+            <Button id="UserCheck" fx:id="btn" onAction="#click" text="input">
+                <VBox.margin>
+                <Insets bottom="5.0" top="5.0" />
+                </VBox.margin>
+            </Button>
         </VBox>
     </left>
     <right>
@@ -46,16 +49,10 @@
     </center>
 
     <bottom>
-        <Label>BOTTOM</Label>
+        <Label>Status</Label>
     </bottom>
-    
-    <fx:script>
-        function checkPlayer(){
-            if(userNick.getText())
-                btn.setText(userNick.getText())
-        }
-    </fx:script>
+
    <padding>
-      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
    </padding>
 </BorderPane>
