@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?language javascript?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -19,16 +21,20 @@
         </HBox>
     </top>
     <left>
-        <Label text="User">Панель игрока</Label>
         <VBox>
             <Label> Nick </Label>
-            <TextField fx:id="userNick" />
-            <Button id="UserCheck" fx:id="btn" onAction="checkPlayer()" text="input" />
+            <TextField fx:id="userNick" promptText="Nick">
+            <VBox.margin>
+               <Insets bottom="5.0" top="5.0" />
+            </VBox.margin></TextField>
+            <Button id="UserCheck" fx:id="btn" onAction="checkPlayer()" text="input">
+            <VBox.margin>
+               <Insets bottom="5.0" top="5.0" />
+            </VBox.margin></Button>
         </VBox>
     </left>
     <right>
-        <Label>Слои</Label>
-        <Label>RIGHT</Label>
+        <TextArea fx:id="loftext" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="358.0" prefWidth="200.0" wrapText="true" />
     </right>
     <!-- Игра -->
 
@@ -45,7 +51,11 @@
     
     <fx:script>
         function checkPlayer(){
-            btn.setText(userNick.getText())
+            if(userNick.getText())
+                btn.setText(userNick.getText())
         }
     </fx:script>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
 </BorderPane>
