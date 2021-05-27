@@ -1,4 +1,0 @@
-
-[Server]	{java.net.BindException: Адрес уже используется (Bind failed)}
-[Server]	{java.net.BindException: Адрес уже используется (Bind failed)}
-[Server]	{java.net.BindException: Адрес уже используется (Bind failed)}

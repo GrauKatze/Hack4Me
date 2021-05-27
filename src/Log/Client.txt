@@ -1,2 +1,0 @@
-
-[Client]	{java.net.ConnectException: В соединении отказано (Connection refused)}

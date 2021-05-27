@@ -1,4 +1,4 @@
-package Server;
+package Model.Server;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -7,12 +7,8 @@ import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import Log.ILogger;
-import Log.Logger;
 
 public class Server extends Thread implements IServer {   
-
-    ILogger log = new Logger();
 
     private int port = 4004;
     private Socket clientSocket;
@@ -47,8 +43,7 @@ public class Server extends Thread implements IServer {
             System.out.println("Сервер запущен!");
         } catch (Exception e) {
             System.out.println("Сервер not запущен!");
-            log.WriteLog(this.getClass().getName(), e.toString());
-        }
+                }
     }
 
     @Override
@@ -65,7 +60,7 @@ public class Server extends Thread implements IServer {
                 out.flush();
             }
         } catch (Exception e) {
-            log.WriteLog(this.getClass().getName(), e.toString());
+            System.err.println(e);
         }
     }
 

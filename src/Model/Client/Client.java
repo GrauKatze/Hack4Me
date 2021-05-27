@@ -1,13 +1,8 @@
-package Client;
+package Model.Client;
 import java.io.*;
 import java.net.Socket;
 
-import Log.ILogger;
-import Log.Logger;
-
 public class Client extends Thread implements IClient {
-
-    ILogger log = new Logger();
 
     private static int port = 4004;
     private static Socket clientSocket;
@@ -39,7 +34,6 @@ public class Client extends Thread implements IClient {
             System.out.println("Clent is on");
         } catch (Exception e) {
             System.err.println(e);
-            log.WriteLog(this.getClass().getName(), e.toString());
         }
     }
 

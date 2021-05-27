@@ -1,4 +1,4 @@
-package Client;
+package Model.Client;
 
 import java.io.IOException;
 

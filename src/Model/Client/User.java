@@ -1,4 +1,4 @@
-package Client;
+package Model.Client;
 
 public class User implements IUser {
         String name = "pipipipi";
