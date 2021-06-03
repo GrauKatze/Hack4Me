@@ -16,6 +16,16 @@ public class Server extends Thread implements IServer {
     private static BufferedReader in;
     private static BufferedWriter out;
 
+    private static boolean isActive;
+
+    public Server(){
+        isActive = true;
+    }
+
+    public void disable(){
+        isActive = false;
+    }
+
     @Override
     public void run() {
         try {

@@ -3,4 +3,4 @@
 
 **for javafx**
 
-`  "vmArgs": "--module-path ${PATH_TO_FX} --add-modules javafx.controls,javafx.fxml",`
+`   "vmArgs": "--module-path /lib/jvm/javafx-sdk-11/lib --add-modules javafx.controls,javafx.fxml"  `

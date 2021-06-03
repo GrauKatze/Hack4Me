@@ -14,7 +14,7 @@
 <BorderPane fx:id="root" prefHeight="400.0" prefWidth="550.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainController">
     <top>
         <HBox>
-            <Button text="firs" />
+            <Button fx:id="userInputBtn" onAction="#userInputBtnClick" text="User" />
             <Button text="firs" />
             <Button text="firs" />
             <Button text="firs" />
@@ -22,21 +22,10 @@
     </top>
     <left>
         <VBox>
-            <Label> Nick </Label>
-            <TextField fx:id="userNick" promptText="Nick">
-                <VBox.margin>
-                <Insets bottom="5.0" top="5.0" />
-                </VBox.margin>
-            </TextField>
-            <Button id="UserCheck" fx:id="btn" onAction="#click" text="input">
-                <VBox.margin>
-                <Insets bottom="5.0" top="5.0" />
-                </VBox.margin>
-            </Button>
+            <Label fx:id="userNick"> Input Nick </Label>
         </VBox>
     </left>
     <right>
-        <TextArea fx:id="loftext" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="358.0" prefWidth="200.0" wrapText="true" />
     </right>
     <!-- Игра -->
 
@@ -50,13 +39,7 @@
     <bottom>
         <Label>Status</Label>
     </bottom>
-    
-    <fx:script>
-        function checkPlayer(){
-            if(userNick.getText())
-                btn.setText(userNick.getText())
-        }
-    </fx:script>
+
    <padding>
       <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
    </padding>
