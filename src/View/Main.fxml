@@ -5,15 +5,14 @@
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="root" prefHeight="400.0" prefWidth="550.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainController">
+<BorderPane fx:id="root" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainController">
     <top>
-        <HBox>
+        <HBox spacing="10">
             <Button fx:id="userInputBtn" onAction="#userInputBtnClick" text="User" />
             <Button text="firs" />
             <Button text="firs" />
@@ -21,8 +20,11 @@
         </HBox>
     </top>
     <left>
-        <VBox>
+        <VBox maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0">
             <Label fx:id="userNick"> Input Nick </Label>
+         <BorderPane.margin>
+            <Insets bottom="10.0" top="10.0" />
+         </BorderPane.margin>
         </VBox>
     </left>
     <right>
@@ -30,14 +32,11 @@
     <!-- Игра -->
 
     <center>
-        <Label>
-         <graphic>
-            <Canvas height="200.0" width="200.0" />
-         </graphic></Label>
+        <Canvas fx:id="battle" height="500.0" width="550.0" BorderPane.alignment="CENTER" />
     </center>
 
     <bottom>
-        <Label>Status</Label>
+        <Label fx:id="status">Status</Label>
     </bottom>
 
    <padding>
