@@ -1,5 +1,4 @@
 import Model.Client.Client;
-import Model.Server.IServer;
 import Model.Server.Server;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +18,7 @@ public class App extends Application{
         Parent root = FXMLLoader.load(getClass().getResource("View/Main.fxml")); 
 
         stage.setScene(new Scene(root));
-        stage.setTitle("Hello JavaFX");
+        stage.setTitle("Hack4Me");
         stage.show();
     }
 

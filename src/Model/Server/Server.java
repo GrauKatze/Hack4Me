@@ -49,7 +49,7 @@ public class Server extends Thread implements IServer {
     @Override
     public void StartServer() {
         try {
-            this.server = new ServerSocket(port);
+            server = new ServerSocket(port);
             System.out.println("Сервер запущен!");
         } catch (Exception e) {
             System.out.println("Сервер not запущен!");
