@@ -1,3 +1,6 @@
+import Model.Client.Client;
+import Model.Server.IServer;
+import Model.Server.Server;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,22 +25,21 @@ public class App extends Application{
 
     @Override
     public void init() throws Exception {
-        // Server srv = new Server();
-        // Client cln = new Client();
-        // srv.start();
-        // cln.start();
-
+        Server srv = new Server();
+        Client cln = new Client();
+        srv.start();
+        cln.start();
 
         super.init();
     }
 
-    // @Override
-    // public void stop() throws Exception {
-    //     Server srv = new Server();
-    //     Client cln = new Client();
-    //     srv.ClouseServer();
-    //     cln.ClouseClient();
+    @Override
+    public void stop() throws Exception {
+        Server srv = new Server();
+        Client cln = new Client();
+        srv.ClouseServer();
+        cln.ClouseClient();
 
-    //     super.stop();
-    // }
+        super.stop();
+    }
 }

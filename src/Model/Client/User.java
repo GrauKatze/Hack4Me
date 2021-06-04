@@ -1,8 +1,8 @@
 package Model.Client;
 
 public class User implements IUser {
-        String name = "pipipipi";
-        int lvl, score;
+        String name;
+        int score;
 
     void ParsInJSON(){
         
@@ -10,6 +10,9 @@ public class User implements IUser {
     void ParcOutJSON(){
 
     }
+
+    public String getName() {return name;}
+    public int getScore() {return score;}
 
     public User(String name){
         this.name = name;
