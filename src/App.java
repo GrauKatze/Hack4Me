@@ -22,23 +22,23 @@ public class App extends Application{
         stage.show();
     }
 
-    @Override
-    public void init() throws Exception {
-        Server srv = new Server();
-        Client cln = new Client();
-        srv.start();
-        cln.start();
+    // @Override
+    // public void init() throws Exception {
+    //     Server srv = new Server();
+    //     Client cln = new Client();
+    //     srv.start();
+    //     cln.start();
 
-        super.init();
-    }
+    //     super.init();
+    // }
 
-    @Override
-    public void stop() throws Exception {
-        Server srv = new Server();
-        Client cln = new Client();
-        srv.ClouseServer();
-        cln.ClouseClient();
+    // @Override
+    // public void stop() throws Exception {
+    //     Server srv = new Server();
+    //     Client cln = new Client();
+    //     srv.ClouseServer();
+    //     cln.ClouseClient();
 
-        super.stop();
-    }
+    //     super.stop();
+    // }
 }
