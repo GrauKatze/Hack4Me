@@ -20,7 +20,8 @@
     </top>
     <left>
         <VBox maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0">
-            <Label fx:id="userNick"> Input Nick </Label>
+            <Label fx:id="userNick" text="nick"/>
+            <Button fx:id="myButton" text="pipi"/>
          <BorderPane.margin>
             <Insets bottom="10.0" top="10.0" />
          </BorderPane.margin>
@@ -31,7 +32,7 @@
     <!-- Игра -->
 
     <center>
-        <Canvas fx:id="battle" height="650.0" onMouseClicked="#canvasClick" width="850.0" BorderPane.alignment="CENTER" />
+        <Canvas fx:id="battle" height="650.0" onMouseClicked="#canvasClick" scaleZ="3.0" width="850.0" BorderPane.alignment="CENTER" />
     </center>
 
     <bottom>

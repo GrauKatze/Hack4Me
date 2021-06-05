@@ -1,5 +1,6 @@
 package Controller;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -23,6 +24,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MultipleSelectionModel;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -37,6 +40,9 @@ public class MainController implements Initializable{
     public ArrayList<Build> baseList = new ArrayList<Build>();
 
     @FXML
+    public Button myButton;
+
+    @FXML
     private Label userNick;
 
     @FXML
@@ -49,7 +55,6 @@ public class MainController implements Initializable{
 
     @FXML
     private void canvasClick(MouseEvent mEvent){
-
 
         Double canvasX = mEvent.getX();
         Double canvasY = mEvent.getY();
@@ -74,7 +79,19 @@ public class MainController implements Initializable{
         gc.setFill(Color.WHITESMOKE);
         gc.fillRect(0, 0, battle.getWidth(), battle.getHeight());
         gc.drawImage(baseList.get(0).getImageView().getImage(), baseList.get(0).getX()-24, baseList.get(0).getY()-24);
-        
+
+        ImageView imageView = new ImageView(baseList.get(0).getImageView().getImage());
+
+        myButton.setText("pipi");
+        myButton.setStyle("-fx-background-color: transparent;");
+        myButton.setGraphic(imageView);
+
+        myButton.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("You clicked: " + ((Button)event.getSource()).getId());
+            }                
+        });
     }
 
     private void AddUser() {
@@ -113,13 +130,14 @@ public class MainController implements Initializable{
         baseList.add(new Build(name, ID, path, X, Y));
 
         GraphicsContext gc = battle.getGraphicsContext2D();
-        gc.drawImage(baseList.get(baseList.size()-1).getImageView().getImage(), baseList.get(baseList.size()-1).getX()-24, baseList.get(baseList.size()-1).getY()-24);
+        gc.drawImage(baseList.get(baseList.size()-1).getImageView().getImage(), baseList.get(baseList.size()-1).getX()-12, baseList.get(baseList.size()-1).getY()-12);
 
     }
 
     private void NewBuild(double X, double Y){
 
         Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
 
         ObservableList<String> langs = FXCollections.observableArrayList("dataCraft", "dataSave", "Protecter");
         ListView<String> langsListView = new ListView<String>(langs);
@@ -150,7 +168,6 @@ public class MainController implements Initializable{
         Scene scene = new Scene(root, 250, 200);
           
         stage.setScene(scene);
-        stage.setTitle("ListView in JavaFX");
         stage.show();
     }
 
