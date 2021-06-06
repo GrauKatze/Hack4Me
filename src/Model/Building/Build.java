@@ -6,19 +6,8 @@ import javafx.scene.image.ImageView;
 public class Build implements Ibuild {
     
     String name;
-    double buildX, buildY;
     ImageView iView;
     int ID = 0;
-
-    @Override
-    public double getX() {
-        return buildX;
-    }
-
-    @Override
-    public double getY() {
-        return buildY;
-    }
 
     @Override
     public String getName() {
@@ -36,16 +25,6 @@ public class Build implements Ibuild {
     }
 
     @Override
-    public void setX(Double X) {
-        this.buildX = X;        
-    }
-
-    @Override
-    public void setY(Double Y) {
-        this.buildY = Y;        
-    }
-
-    @Override
     public void setName(String name) {
         this.name=name;        
     }
@@ -60,12 +39,10 @@ public class Build implements Ibuild {
         this.ID = ID;        
     }
 
-    public Build(String name, int ID, String path, Double X, Double Y){
+    public Build(String name, int ID, String path){
         setName(name);
         setID(ID);
         setImageView(path);
-        setX(X);
-        setY(Y);
     }
     
 }
