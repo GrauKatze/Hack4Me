@@ -8,6 +8,13 @@ public class Build implements Ibuild {
     String name;
     ImageView iView;
     int ID = 0;
+    int dataResources;
+
+    private enum Buildes{
+        dataCraftBuild,
+        dataSaveBuild,
+        protector;
+    }
 
     @Override
     public String getName() {
@@ -43,6 +50,16 @@ public class Build implements Ibuild {
         setName(name);
         setID(ID);
         setImageView(path);
+    }
+
+    @Override
+    public int getDataResources() {
+        return dataResources;
+    }
+
+    @Override
+    public void setDataResources(int dataResources) {
+        this.dataResources = dataResources;      
     }
     
 }

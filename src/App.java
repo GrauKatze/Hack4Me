@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class App extends Application{
+public class App extends Application {
 
     public static void main(String[] args) {
         Application.launch(args);
@@ -14,8 +14,8 @@ public class App extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
-          
-        Parent root = FXMLLoader.load(getClass().getResource("View/Main.fxml")); 
+
+        Parent root = FXMLLoader.load(getClass().getResource("View/Main.fxml"));
 
         stage.setScene(new Scene(root));
         stage.setTitle("Hack4Me");
@@ -24,21 +24,21 @@ public class App extends Application{
 
     // @Override
     // public void init() throws Exception {
-    //     Server srv = new Server();
-    //     Client cln = new Client();
-    //     srv.start();
-    //     cln.start();
+    // Server srv = new Server();
+    // Client cln = new Client();
+    // srv.start();
+    // cln.start();
 
-    //     super.init();
+    // super.init();
     // }
 
     // @Override
     // public void stop() throws Exception {
-    //     Server srv = new Server();
-    //     Client cln = new Client();
-    //     srv.ClouseServer();
-    //     cln.ClouseClient();
+    // Server srv = new Server();
+    // Client cln = new Client();
+    // srv.ClouseServer();
+    // cln.ClouseClient();
 
-    //     super.stop();
+    // super.stop();
     // }
 }

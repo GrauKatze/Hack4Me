@@ -10,4 +10,6 @@ public interface Ibuild {
     public void setImageView(String path);
     public int getID();
     public void setID(int ID);
+    public int getDataResources();
+    public void setDataResources(int dataResources);
 }
