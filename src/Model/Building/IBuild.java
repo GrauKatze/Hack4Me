@@ -2,7 +2,7 @@ package Model.Building;
 
 import javafx.scene.image.ImageView;
 
-public interface Ibuild {
+public interface IBuild {
 
     public String getName();
     public void setName(String name);

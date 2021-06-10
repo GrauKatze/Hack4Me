@@ -20,6 +20,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -27,12 +29,7 @@ public class MainController implements Initializable {
 
     Random rnd = new Random();
 
-
     private User user = new User();
-
-    public User getUser() {
-        return user;
-    }
 
     private ArrayList<Build> buildList = new ArrayList<Build>();
 
@@ -47,7 +44,7 @@ public class MainController implements Initializable {
     private Pane battle;
 
     @FXML
-    private Label userNick;
+    private Label userNick, userData;
 
     @FXML
     private void ShowBildList(ActionEvent craftBuildEvent) {
@@ -55,7 +52,7 @@ public class MainController implements Initializable {
         TextArea root = new TextArea();
 
         for (Build build : buildList) {
-            root.appendText(build.getID() + " - " + build.getName()+"\n");
+            root.appendText(build.getID() + " - " + build.getName() + "\n");
         }
 
         Scene scene = new Scene(root);
@@ -76,8 +73,8 @@ public class MainController implements Initializable {
 
         System.out.println(grad);
 
-        X = 150*Math.cos(grad);
-        Y = 150*Math.sin(grad);
+        X = 150 * Math.cos(grad);
+        Y = 150 * Math.sin(grad);
 
         ImageView iDataCraft = new ImageView(new Image(getClass().getResourceAsStream("../Resource/dataCraft.png")));
         ImageView iDataSave = new ImageView(new Image(getClass().getResourceAsStream("../Resource/dataSave.png")));
@@ -87,14 +84,38 @@ public class MainController implements Initializable {
         DataCraft.setGraphic(iDataCraft);
         DataCraft.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                buildList.add(new Build("DataCraft", buildList.size(), "../../Resource/dataCraft.png"));
-                DataCraft.setStyle("-fx-background-color: transparent;");
-                DataCraft.setText("");
-                DataCraft.setLayoutX(eventButton.getLayoutX()+ X);
-                DataCraft.setLayoutY(eventButton.getLayoutY() + Y);
+                if (user.getDataResources() >= 250) {
+                    buildList.add(new Build("DataCraft", buildList.size(), "../../Resource/dataCraft.png"));
 
-                battle.getChildren().add(DataCraft);
-                stage.close();
+                    user.changeDataResource(-250);
+                    user.dataUp += 30;
+                    userData.setText(String.valueOf(user.getDataResources()));
+
+                    DataCraft.setStyle("-fx-background-color: transparent;");
+                    DataCraft.setText("");
+                    DataCraft.setLayoutX(eventButton.getLayoutX() + X);
+                    DataCraft.setLayoutY(eventButton.getLayoutY() + Y);
+
+                    DataCraft.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() {
+                        public void handle(ActionEvent event) {
+                            CraftBuild(event);
+                        }
+                    });
+                    ;
+
+                    DataCraft.setPrefHeight(24);
+                    DataCraft.setPrefWidth(24);
+
+                    Line line = new Line(eventButton.getLayoutX() + eventButton.getWidth()/2,eventButton.getLayoutY()+eventButton.getHeight()/2,
+                    DataCraft.getLayoutX()+16,DataCraft.getLayoutY()+16);
+
+                    line.setStrokeWidth(5);
+                    line.setStroke(Color.BLUE);
+
+                    battle.getChildren().addAll(DataCraft,line);
+
+                    stage.close();
+                }
             }
         });
 
@@ -102,15 +123,33 @@ public class MainController implements Initializable {
         DataSave.setGraphic(iDataSave);
         DataSave.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                buildList.add(new Build("DataSave", buildList.size(), "../../Resource/dataSave.png"));
+                if (user.getDataResources() >= 350) {
+                    buildList.add(new Build("DataSave", buildList.size(), "../../Resource/dataSave.png"));
 
-                DataSave.setStyle("-fx-background-color: transparent;");
-                DataSave.setText("");
-                DataSave.setLayoutX(eventButton.getLayoutX()+ X);
-                DataSave.setLayoutY(eventButton.getLayoutY() + Y);
+                    user.changeDataResource(-350);
+                    userData.setText(String.valueOf(user.getDataResources()));
 
-                battle.getChildren().add(DataSave);
-                stage.close();
+                    DataSave.setStyle("-fx-background-color: transparent;");
+                    DataSave.setText("");
+                    DataSave.setLayoutX(eventButton.getLayoutX() + X);
+                    DataSave.setLayoutY(eventButton.getLayoutY() + Y);
+
+                    DataSave.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() {
+                        public void handle(ActionEvent event) {
+                            CraftBuild(event);
+                        }
+                    });
+                    ;
+
+                    Line line = new Line(eventButton.getLayoutX() + eventButton.getWidth()/2,eventButton.getLayoutY()+eventButton.getHeight()/2,
+                    DataSave.getLayoutX()+16,DataSave.getLayoutY()+16);
+
+                    line.setStrokeWidth(5);
+                    line.setStroke(Color.BLUE);
+
+                    battle.getChildren().addAll(DataSave,line);
+                    stage.close();
+                }
             }
         });
 
@@ -118,15 +157,33 @@ public class MainController implements Initializable {
         Protector.setGraphic(iProtector);
         Protector.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                buildList.add(new Build("Protector", buildList.size(), "../../Resource/Protector.png"));
+                if (user.getDataResources() >= 150) {
+                    buildList.add(new Build("Protector", buildList.size(), "../../Resource/Protector.png"));
+                    user.changeDataResource(-150);
 
-                Protector.setStyle("-fx-background-color: transparent;");
-                Protector.setText("");
-                Protector.setLayoutX(eventButton.getLayoutX()+ X);
-                Protector.setLayoutY(eventButton.getLayoutY() + Y);
+                    Protector.setStyle("-fx-background-color: transparent;");
+                    Protector.setText("");
+                    Protector.setLayoutX(eventButton.getLayoutX() + X);
+                    Protector.setLayoutY(eventButton.getLayoutY() + Y);
 
-                battle.getChildren().add(Protector);
-                stage.close();
+                    Protector.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() {
+                        public void handle(ActionEvent event) {
+                            CraftBuild(event);
+                        }
+                    });
+                    ;
+                    Protector.setPrefHeight(24);
+                    Protector.setPrefWidth(24);
+
+                    Line line = new Line(eventButton.getLayoutX() + eventButton.getWidth()/2,eventButton.getLayoutY()+eventButton.getHeight()/2,
+                    Protector.getLayoutX()+16,Protector.getLayoutY()+16);
+
+                    line.setStrokeWidth(5);
+                    line.setStroke(Color.BLUE);
+
+                    battle.getChildren().addAll(Protector,line);
+                    stage.close();
+                }
             }
         });
 
@@ -134,7 +191,6 @@ public class MainController implements Initializable {
         root.getChildren().addAll(DataCraft, DataSave, Protector);
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        // stage.initStyle(StageStyle.UNDECORATED);
         stage.setTitle("New User");
         stage.showAndWait();
     }
@@ -154,8 +210,9 @@ public class MainController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 if (!(userInputNickTextField.getText().isBlank())) {
-                    user.setName(userInputNickTextField.getText());
-                    userNick.setText(user.getName());
+                    user.setUserName(userInputNickTextField.getText());
+                    userNick.setText(user.getUserName());
+                    userData.setText(String.valueOf(user.getDataResources()));
                     stage.close();
                 }
             }
@@ -171,13 +228,10 @@ public class MainController implements Initializable {
 
     }
 
-    private void AddBuild() {
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        // AddUser();
+        AddUser();
 
         buildList.add(new Build("basa", 0, "../../Resource/base.png"));
 
@@ -199,4 +253,7 @@ public class MainController implements Initializable {
         battle.getChildren().addAll(myButton);
     }
 
+    public void update() {
+        userData.setText(String.valueOf(user.getDataResources()));
+    }
 }

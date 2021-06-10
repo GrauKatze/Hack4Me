@@ -3,18 +3,12 @@ package Model.Building;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class Build implements Ibuild {
+public class Build implements IBuild {
     
     String name;
     ImageView iView;
     int ID = 0;
     int dataResources;
-
-    private enum Buildes{
-        dataCraftBuild,
-        dataSaveBuild,
-        protector;
-    }
 
     @Override
     public String getName() {

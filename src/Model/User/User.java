@@ -1,11 +1,33 @@
 package Model.User;
 
-public class User implements IUser {
-    private String name;
-    private int score = 0;
-    private int dataResources = 1000;
+import Controller.MainController;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 
-    public String getName() {
+public class User extends Thread implements IUser {
+
+
+    private String name = "user";
+    private int score = 0;
+    private int dataResources = 100000;
+    public int dataUp = 0;
+
+
+    @Override
+    public void run() {
+        while (true) {
+            changeDataResource(dataUp);
+            System.out.println(dataResources);
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public String getUserName() {
         return name;
     }
 
@@ -14,7 +36,7 @@ public class User implements IUser {
     }
 
     @Override
-    public void setName(String name) {
+    public void setUserName(String name) {
         this.name = name;
 
     }
@@ -35,5 +57,11 @@ public class User implements IUser {
     }
 
     public User() {
+        start();
+    }
+
+    @Override
+    public void changeDataResource(int dataResources) {
+        this.dataResources += dataResources;
     }
 }

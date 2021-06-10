@@ -1,4 +1,5 @@
 package Model.Server;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -7,8 +8,7 @@ import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-
-public class Server extends Thread implements IServer {   
+public class Server extends Thread implements IServer {
 
     private int port = 4004;
     private Socket clientSocket;
@@ -18,18 +18,18 @@ public class Server extends Thread implements IServer {
 
     private static boolean isActive;
 
-    public Server(){
+    public Server() {
         isActive = true;
     }
 
-    public void disable(){
+    public void disable() {
         isActive = false;
     }
 
     @Override
     public void run() {
         try {
-            try  {
+            try {
                 StartServer();
                 clientSocket = server.accept();
                 try {
@@ -39,7 +39,7 @@ public class Server extends Thread implements IServer {
                 }
             } finally {
                 System.out.println("Сервер закрыт!");
-                    server.close();
+                server.close();
             }
         } catch (IOException e) {
             System.err.println(e);
@@ -53,19 +53,19 @@ public class Server extends Thread implements IServer {
             System.out.println("Сервер запущен!");
         } catch (Exception e) {
             System.out.println("Сервер not запущен!");
-                }
+        }
     }
 
     @Override
     public void mail() throws IOException {
         try {
             Server.in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            Server.out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));  
+            Server.out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
             String word;
-            while(true){
+            while (true) {
                 word = in.readLine();
                 System.out.println("Clinet: " + word);
-                //Так как клиент ждет поток от сервера
+                // Так как клиент ждет поток от сервера
                 out.write("\n");
                 out.flush();
             }
@@ -78,11 +78,11 @@ public class Server extends Thread implements IServer {
     public void ClouseServer() throws IOException {
         this.clientSocket.close();
         Server.in.close();
-        Server.out.close();        
+        Server.out.close();
     }
 
     @Override
     public void UsersSkan() {
-        
+
     }
 }

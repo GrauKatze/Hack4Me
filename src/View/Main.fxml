@@ -16,15 +16,13 @@
          <Button fx:id="BuildList" onAction="#ShowBildList" text="BuildList" />
          <Button text="firs" />
          <Button text="firs" />
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
       </HBox>
    </top>
    <!-- User Info Box -->
    <left>
       <VBox maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" spacing="10.0">
          <Label fx:id="userNick" text="nick" />
+         <Label fx:id="userData" text="0000" />
          <BorderPane.margin>
             <Insets bottom="10.0" top="10.0" />
          </BorderPane.margin>
