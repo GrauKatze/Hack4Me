@@ -9,7 +9,8 @@ public class User extends Thread implements IUser {
 
     private String name = "user";
     private int score = 0;
-    private int dataResources = 100000;
+    private int dataResources = 1000;
+    private int dataMAX = 1500;
     public int dataUp = 0;
 
 
@@ -62,6 +63,16 @@ public class User extends Thread implements IUser {
 
     @Override
     public void changeDataResource(int dataResources) {
-        this.dataResources += dataResources;
+        if((this.dataResources += dataResources)<=dataMAX){
+            this.dataResources += dataResources;
+        }else{
+            this.dataResources = dataMAX;
+        }
+    }
+
+    @Override
+    public void changeDataMax(int dataMAX) {
+        this.dataMAX += dataMAX;
+        
     }
 }

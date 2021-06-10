@@ -8,5 +8,5 @@ public interface IUser {
     public int getDataResources();
     public void setDataResources(int dataResources);
     public void changeDataResource(int dataResources);
-    
+    public void changeDataMax(int dataMAX);
 }

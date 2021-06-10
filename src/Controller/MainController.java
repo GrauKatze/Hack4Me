@@ -129,6 +129,8 @@ public class MainController implements Initializable {
                     user.changeDataResource(-350);
                     userData.setText(String.valueOf(user.getDataResources()));
 
+                    user.changeDataMax(500);
+
                     DataSave.setStyle("-fx-background-color: transparent;");
                     DataSave.setText("");
                     DataSave.setLayoutX(eventButton.getLayoutX() + X);
